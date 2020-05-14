@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  an:
+    image: ${DOCKER_REGISTRY-}an
+    build:
+      context: .
+      dockerfile: AN/Dockerfile

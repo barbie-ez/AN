@@ -1,0 +1,28 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AN", "AN\AN.csproj", "{58AE3443-0CF8-4A57-BFB3-C20E7D860905}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6FE1F802-9E1A-4D43-9411-DF565745DD7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{320DF044-4B5C-437D-B866-A1650E4D2945}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58AE3443-0CF8-4A57-BFB3-C20E7D860905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58AE3443-0CF8-4A57-BFB3-C20E7D860905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58AE3443-0CF8-4A57-BFB3-C20E7D860905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58AE3443-0CF8-4A57-BFB3-C20E7D860905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FE1F802-9E1A-4D43-9411-DF565745DD7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FE1F802-9E1A-4D43-9411-DF565745DD7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FE1F802-9E1A-4D43-9411-DF565745DD7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FE1F802-9E1A-4D43-9411-DF565745DD7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
