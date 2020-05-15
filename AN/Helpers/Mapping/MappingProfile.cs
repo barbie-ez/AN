@@ -1,5 +1,6 @@
 ﻿using System;
 using AN.Core.Domain;
+using AN.DTO;
 using AutoMapper;
 
 namespace AN.Helpers.Mapping

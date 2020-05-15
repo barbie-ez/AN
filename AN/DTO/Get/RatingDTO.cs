@@ -3,8 +3,8 @@ namespace AN.DTO.Get
 {
     public class RatingDTO
     {
-        public RatingDTO()
-        {
-        }
+        public int Id { get; set; }
+        
+        public int Score { get; set; }
     }
 }

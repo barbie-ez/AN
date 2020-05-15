@@ -32,7 +32,7 @@ namespace AN.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult> Login([FromBody] UserDTO user)
+        public async Task<ActionResult> Login([FromBody] LoginDTO user)
         {
             var userProfile = await _userManager.FindByEmailAsync(user.Username);
 

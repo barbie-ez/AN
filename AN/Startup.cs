@@ -24,11 +24,15 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using AutoMapper;
 using AN.Helpers.Mapping;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace AN
 {
     public class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -162,16 +166,29 @@ namespace AN
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory, ILogger<Startup> logger)
         {
             if (env.IsDevelopment())
             {
+                logger.LogInformation("In Development.");
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                logger.LogInformation("Not Development.");
+                app.UseExceptionHandler(appBuilder =>
+                                            appBuilder.Run(async context =>
+                                            {
+                                                var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerFeature>();
+                                                if (exceptionHandlerFeature != null)
+                                                {
+                                                    var logger = loggerFactory.CreateLogger("Global Exception Logger");
+                                                    logger.LogError(500, exceptionHandlerFeature.Error, exceptionHandlerFeature.Error.Message);
+
+                                                }
+                                                context.Response.StatusCode = 500;
+                                                await context.Response.WriteAsync("An unexpected server side error occured");
+                                            }));
                 app.UseHsts();
             }
             

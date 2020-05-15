@@ -1,20 +1,19 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AN.Data;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Events;
 
 namespace AN
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
+
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
             {
@@ -30,7 +29,30 @@ namespace AN
                     logger.LogError(ex, "An error occurred seeding the DB.");
                 }
             }
-            host.Run();
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .CreateLogger();
+
+            try
+            {
+                Log.Information("Starting web host");
+                host.Run();
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly");
+                return 1;
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -39,6 +61,7 @@ namespace AN
                 {
                     webBuilder.UseStartup<Startup>()
                         .UseUrls("http://0.0.0.0:" + Environment.GetEnvironmentVariable("PORT"));
-                });
+                }).UseSerilog();
+
     }
 }
