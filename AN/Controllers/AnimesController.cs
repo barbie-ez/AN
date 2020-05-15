@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AN.Core;
+using AN.Core.Domain;
+using AN.DTO.Response;
+using AN.Helpers.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -24,7 +29,9 @@ namespace AN.Controllers
         [HttpGet]
         public IActionResult GetAnimes()
         {
-            return Ok(_unitOfWork.Animes.GetAll());
+            _logger.LogInformation(MyLogEvents.GetItem, "Getting items");
+
+            return Ok(new ResponseDTO<List<Anime>>(){ Code = 200, responseMessage="list of animes successfully returned",returnObject= _unitOfWork.Animes.GetAll().ToList() }) ;
         }
 
     }

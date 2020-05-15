@@ -43,5 +43,7 @@
     <Folder Include="Helpers\Constants\" />
     <Folder Include="Helpers\Options\" />
     <Folder Include="Helpers\Mapping\" />
+    <Folder Include="DTO\ Response\" />
+    <Folder Include="Helpers\Logging\" />
   </ItemGroup>
 </Project>

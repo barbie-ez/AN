@@ -1,7 +1,7 @@
 ﻿using System;
 namespace AN.Core.Domain
 {
-    public class Rating
+    public class Rating : Base
     {
         public Rating()
         {
