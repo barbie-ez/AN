@@ -101,10 +101,6 @@ namespace AN
 
             services.AddSwaggerGen(setupAction =>
             {
-                var security = new Dictionary<string, IEnumerable<string>>
-                {
-                    {"Bearer", new string[] { }},
-                };
                 setupAction.SwaggerDoc("ANOpenApiSpecification",
                     new OpenApiInfo()
                     {
@@ -142,12 +138,9 @@ namespace AN
                                 Type = ReferenceType.SecurityScheme,
                                 Id = "Bearer"
                             },
-                            Scheme = "oauth2",
-                            Name = "Bearer",
-                            In = ParameterLocation.Header,
 
                         },
-                        new List<string>()
+                        new string[] { }
                     }
                 });
             });
@@ -178,19 +171,21 @@ namespace AN
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
             
-
-            app.UseAuthentication();
             app.UseHttpsRedirection();
+
             app.UseSwagger();
 
             app.UseSwaggerUI(setupAction => {
                 setupAction.SwaggerEndpoint
-                    ("/swagger/ANOpenApiSpecification/swagger.json", "Diet Tracker API");
+                    ("/swagger/ANOpenApiSpecification/swagger.json", "AN API");
                 setupAction.RoutePrefix = "";
 
 

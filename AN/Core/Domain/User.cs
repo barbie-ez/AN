@@ -19,7 +19,7 @@ namespace AN.Core.Domain
 
 
         [Required(ErrorMessage = "The date of birth field is required")]
-        public string DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         public ICollection<Role> Roles { get; set; } = new List<Role>();
 
