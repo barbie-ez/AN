@@ -27,9 +27,6 @@ namespace AN.Core.Domain
 
         public ICollection<Favorite> Favorites { get; set; }
 
-        public string Token { get; set; }
-
-
 
     }
 }

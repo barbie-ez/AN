@@ -17,12 +17,12 @@ namespace AN.Data
 
             _context = (ANDbContext)serviceProvider.GetService(typeof(ANDbContext));
 
-            await InitializeVMS();
+            InitializeVMS();
 
 
         }
 
-        private static async Task InitializeVMS()
+        private static void InitializeVMS()
         {
             if (!_context.Roles.Any())
             {

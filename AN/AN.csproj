@@ -25,6 +25,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.5.1" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,5 +40,6 @@
     <Folder Include="DTO\Get\" />
     <Folder Include="Helpers\Constants\" />
     <Folder Include="Helpers\Options\" />
+    <Folder Include="Helpers\Mapping\" />
   </ItemGroup>
 </Project>

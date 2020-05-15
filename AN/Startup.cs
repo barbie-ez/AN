@@ -22,6 +22,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using AutoMapper;
+using AN.Helpers.Mapping;
 
 namespace AN
 {
@@ -63,6 +65,17 @@ namespace AN
                 setupAction.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
                 setupAction.InputFormatters.Add(new XmlSerializerInputFormatter(setupAction));
             });
+
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+
+            services.AddSingleton(mapper);
+
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
 

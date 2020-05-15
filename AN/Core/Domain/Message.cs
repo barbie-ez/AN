@@ -15,7 +15,7 @@ namespace AN.Core.Domain
 
         public User Addedby { get; set; }
 
-        public int AddedbyId { get; set; }
+        public string AddedbyId { get; set; }
 
     }
 }
