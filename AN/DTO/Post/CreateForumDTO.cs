@@ -1,9 +1,9 @@
 ﻿using System;
 namespace AN.DTO.Post
 {
-    public class AnimeDTO
+    public class CreateForumDTO
     {
-        public AnimeDTO()
+        public CreateForumDTO()
         {
         }
     }

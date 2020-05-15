@@ -8,8 +8,8 @@ namespace AN.Helpers.Mapping
     {
         public MappingProfile()
         {
-            //CreateMap<Anime, AnimeDTO>();
-            //CreateMap<AnimeDTO, Anime>();
+            CreateMap<Anime, AnimeDTO>();
+            CreateMap<AnimeDTO, Anime>();
         }
     }
 }

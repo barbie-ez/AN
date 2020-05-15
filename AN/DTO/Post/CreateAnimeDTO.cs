@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace AN.Core.Domain
+namespace AN.DTO.Post
 {
-    public class Anime : Base
+    public class CreateAnimeDTO
     {
-        public Anime()
-        {
-        }
-
+        [Required]
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -19,9 +17,8 @@ namespace AN.Core.Domain
 
         public int? StudioId { get; set; }
 
-        public Studio Studio { get; set; }
-
-        public ICollection<AnimeGenre> AnimeGenres { get; set; } = new List<AnimeGenre>();
+        [Required]
+        public IList<int> AnimeGenres { get; set; } = new List<int>();
 
         public bool HasManga { get; set; }
 
@@ -31,6 +28,6 @@ namespace AN.Core.Domain
 
         public DateTime BraodcastTime { get; set; }
 
-        public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
+        public IList<int> Ratings { get; set; } = new List<int>();
     }
 }

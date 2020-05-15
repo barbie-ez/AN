@@ -9,5 +9,7 @@ namespace AN.Core.Domain
 
         public Anime Anime { get; set; }
         public int AnimeId { get; set; }
+        public User User { get; set; }
+        public string UserId { get; set; }
     }
 }
