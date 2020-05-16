@@ -75,7 +75,7 @@ namespace AN.Controllers
 
             var favoritesToReturn= _mapper.Map<FavoriteDTO>(favouritesEntity);
 
-            return CreatedAtAction("GetFavoritesForUser",new { userId },new ResponseDTO<FavoriteDTO>() { Code = ResponseCodes.Success, responseMessage = "list of animes successfully returned", returnObject = favoritesToReturn });
+            return CreatedAtRoute("GetFavoritesForUser",new { userId },new ResponseDTO<FavoriteDTO>() { Code = ResponseCodes.Success, responseMessage = "list of animes successfully returned", returnObject = favoritesToReturn });
         }
 
     }

@@ -27,7 +27,7 @@ namespace AN.Core.Domain
 
         public int Duration { get; set; }
 
-        public string Rated { get; set; }
+        public string Rated { get; set; } 
 
         public DateTime BraodcastTime { get; set; }
 

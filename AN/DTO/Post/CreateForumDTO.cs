@@ -10,7 +10,5 @@ namespace AN.DTO.Post
         public string Description { get; set; }
 
         public IList<int> Message { get; set; } = new List<int>();
-
-        public int AnimeId { get; set; }
     }
 }

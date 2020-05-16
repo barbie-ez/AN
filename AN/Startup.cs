@@ -75,6 +75,9 @@ namespace AN
             {
                 mc.AddProfile(new AnimeProfile());
                 mc.AddProfile(new FavoritesProfile());
+                mc.AddProfile(new StudioProfile());
+                mc.AddProfile(new ForumProfile());
+                mc.AddProfile(new RatingProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();
@@ -145,6 +148,8 @@ namespace AN
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
                 });
+
+                setupAction.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
                 setupAction.AddSecurityRequirement(new OpenApiSecurityRequirement()
                 {

@@ -13,7 +13,7 @@ namespace AN.Core.Domain
 
         public string Description { get; set; }
 
-        public ICollection<Message> Message { get; set; }
+        public ICollection<Message> Message { get; set; } = new List<Message>();
 
         public int AnimeId { get; set; }
 
