@@ -27,11 +27,11 @@ namespace AN.Controllers
 
         [Produces("application/json")]
         [HttpGet]
-        public IActionResult GetAnimes()
+        public ActionResult GetAnimes()
         {
-            _logger.LogInformation(MyLogEvents.GetItem, "Getting items");
+            _logger.LogInformation(MyLogEvents.ListItems, "Listing animes");
 
-            return Ok(new ResponseDTO<List<Anime>>(){ Code = 200, responseMessage="list of animes successfully returned",returnObject= _unitOfWork.Animes.GetAll().ToList() }) ;
+            return Ok(new ResponseDTO<List<Anime>>() { Code = 200, responseMessage = "list of animes successfully returned", returnObject = _unitOfWork.Animes.GetAll().ToList() });
         }
 
     }

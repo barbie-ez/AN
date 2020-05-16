@@ -17,12 +17,18 @@ namespace AN.Persistense
             Favorites = new FavoriteRepository(_context);
             Forums = new ForumRepository(_context);
             Messages = new MessageRepository(_context);
+            Genres = new GenreRepository(_context);
+            Ratings = new RatingRepository(_context);
+            Studios = new StudioRepository(_context);
         }
 
         public IAnimeRepository Animes { get; private set; }
         public IFavoriteRepository Favorites { get; private set; }
         public IForumRepository Forums { get; private set; }
         public IMessageRepository Messages { get; private set; }
+        public IGenreRepository Genres { get; private set; }
+        public IRatingRepository Ratings { get; private set; }
+        public IStudioRepository Studios { get; private set; }
 
         public int Complete()
         {

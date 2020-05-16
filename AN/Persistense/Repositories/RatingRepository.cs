@@ -6,7 +6,7 @@ using AN.Data;
 namespace AN.Persistense.Repositories
 {
 
-    public class RatingRepository : Repository<Studio>, IStudioRepository
+    public class RatingRepository : Repository<Rating>, IRatingRepository
     {
         public RatingRepository(ANDbContext context) : base(context)
         {

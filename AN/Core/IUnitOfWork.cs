@@ -9,6 +9,9 @@ namespace AN.Core
         IFavoriteRepository Favorites { get; }
         IMessageRepository Messages { get; }
         IForumRepository Forums { get; }
+        IStudioRepository Studios { get; }
+        IGenreRepository Genres { get; }
+        IRatingRepository Ratings { get; }
 
         int Complete();
     }

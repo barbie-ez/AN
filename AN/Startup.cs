@@ -73,7 +73,8 @@ namespace AN
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new MappingProfile());
+                mc.AddProfile(new AnimeProfile());
+                mc.AddProfile(new FavoritesProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

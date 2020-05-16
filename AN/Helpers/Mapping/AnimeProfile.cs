@@ -6,9 +6,9 @@ using AutoMapper;
 
 namespace AN.Helpers.Mapping
 {
-    public class MappingProfile : Profile
+    public class AnimeProfile : Profile
     {
-        public MappingProfile()
+        public AnimeProfile()
         {
             CreateMap<Anime, AnimeDTO>();
             CreateMap<AnimeDTO, Anime>();

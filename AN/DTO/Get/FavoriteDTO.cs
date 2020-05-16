@@ -1,7 +1,7 @@
 ﻿using System;
 namespace AN.DTO.Get
 {
-    public class Favourite
+    public class FavoriteDTO
     {
         public int Id { get; set; }
 
