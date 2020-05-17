@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace AN.Core.Domain
 {
     public class Rating : Base
@@ -8,13 +10,12 @@ namespace AN.Core.Domain
         }
         public int Score { get; set; }
 
-        public int AnimeId { get; set; }
+        public ICollection<AnimeRating> AnimeRating { get; set; }
 
-        public Anime Anime { get; set; }
+        public string UserId { get; set; }
 
-        public int UserId { get; set; }
+        public User User { get; set; }
 
-        public int User { get; set; }
     }
 }
 

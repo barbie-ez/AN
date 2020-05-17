@@ -27,6 +27,17 @@ namespace AN.Data
                     .WithMany(g => g.AnimeGenres)
                     .HasForeignKey(ag => ag.GenreId);
 
+            builder.Entity<AnimeRating>()
+                    .HasKey(ar => new { ar.RatingId, ar.AnimeId });
+            builder.Entity<AnimeRating>()
+                    .HasOne(ar => ar.Anime)
+                    .WithMany(a => a.AnimeRating)
+                    .HasForeignKey(ar => ar.AnimeId);
+            builder.Entity<AnimeRating>()
+                    .HasOne(ar => ar.Rating)
+                    .WithMany(r => r.AnimeRating)
+                    .HasForeignKey(ar => ar.RatingId);
+
         }
 
         public DbSet<User> Users { get; set; }

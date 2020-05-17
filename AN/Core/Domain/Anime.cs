@@ -31,6 +31,6 @@ namespace AN.Core.Domain
 
         public DateTime BraodcastTime { get; set; }
 
-        public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
+        public ICollection<AnimeRating> AnimeRating { get; set; } = new List<AnimeRating>();
     }
 }
