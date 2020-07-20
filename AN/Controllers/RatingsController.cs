@@ -47,7 +47,7 @@ namespace AN.Controllers
                 return NotFound(new ResponseDTO<string> { Code = ResponseCodes.NotFound, responseMessage = "anime does not exist", returnObject = null });
             }
 
-            var ratingsFromUsers = _unitOfWork.Ratings.GetAnimeRatings(animeId);
+            var ratingsFromUsers = _unitOfWork.Animes.FirstOrDefault(a => a.Id == animeId).Ratings;
 
             var ratingsToReturn = _mapper.Map<IEnumerable<RatingDTO>>(ratingsFromUsers);
 
@@ -88,13 +88,16 @@ namespace AN.Controllers
 
             var ratingEntity = _mapper.Map<Rating>(rating);
 
-            _unitOfWork.Ratings.Add(ratingEntity);
+           // _unitOfWork.Ratings.Add(ratingEntity);
 
+            var anime = _unitOfWork.Animes.FirstOrDefault(r => r.Id == animeId);
 
-            ratingEntity.AnimeRating.Add(new AnimeRating
-            {
-                AnimeId = animeId
-            });
+            anime.Ratings.Add(ratingEntity);
+
+            //ratingEntity.AnimeRating.Add(new AnimeRating
+            //{
+            //    AnimeId = animeId
+            //});
 
             _unitOfWork.Complete();
 

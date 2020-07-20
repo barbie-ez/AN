@@ -3,6 +3,6 @@ namespace AN.DTO.Post
 {
     public class CreateStudioDTO
     {
-        public int Name { get; set; }
+        public string Name { get; set; }
     }
 }

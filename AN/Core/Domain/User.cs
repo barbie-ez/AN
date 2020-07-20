@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace AN.Core.Domain
@@ -20,6 +21,8 @@ namespace AN.Core.Domain
 
         [Required(ErrorMessage = "The date of birth field is required")]
         public DateTime DateOfBirth { get; set; }
+
+        public string ProfilePic { get; set; }
 
         public ICollection<Role> Roles { get; set; } = new List<Role>();
 

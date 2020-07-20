@@ -8,7 +8,7 @@ namespace AN.Core.Domain
         public Studio()
         {
         }
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Anime> Animes { get; set; } = new List<Anime>();
         

@@ -7,7 +7,7 @@ namespace AN.DTO.Get
     {
         public int Id { get; set; }
 
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         public IList<AnimeDTO> Animes { get; set; } = new List<AnimeDTO>();
     }

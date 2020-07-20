@@ -28,6 +28,10 @@
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,5 +49,6 @@
     <Folder Include="Helpers\Mapping\" />
     <Folder Include="DTO\ Response\" />
     <Folder Include="Helpers\Logging\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 </Project>

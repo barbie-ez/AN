@@ -7,6 +7,6 @@ namespace AN.Core.Repositories
     public interface IRatingRepository : IRepository<Rating>
     {
         bool AnimeExists(int animeId);
-        IEnumerable<Rating> GetAnimeRatings(int animeId);
+        //IEnumerable<Rating> GetAnimeRatings(int animeId);
     }
 }

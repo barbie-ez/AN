@@ -5,55 +5,61 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AN.Migrations
 {
     [DbContext(typeof(ANDbContext))]
-    [Migration("20200517120949_relationshipsbetweenanimerating")]
-    partial class relationshipsbetweenanimerating
+    [Migration("20200715132512_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
+                .HasAnnotation("ProductVersion", "3.1.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("AN.Core.Domain.Anime", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("AnimeIcon")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("BraodcastTime")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
                     b.Property<int>("Duration")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("HasManga")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<int>("NoOfEps")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Rated")
                         .HasColumnType("text");
 
                     b.Property<int>("Rating")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("StudioId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
@@ -65,53 +71,24 @@ namespace AN.Migrations
                     b.ToTable("Animes");
                 });
 
-            modelBuilder.Entity("AN.Core.Domain.AnimeGenre", b =>
-                {
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AnimeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GenreId", "AnimeId");
-
-                    b.HasIndex("AnimeId");
-
-                    b.ToTable("AnimeGenre");
-                });
-
-            modelBuilder.Entity("AN.Core.Domain.AnimeRating", b =>
-                {
-                    b.Property<int>("RatingId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AnimeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RatingId", "AnimeId");
-
-                    b.HasIndex("AnimeId");
-
-                    b.ToTable("AnimeRating");
-                });
-
             modelBuilder.Entity("AN.Core.Domain.Favorite", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("AnimeId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -126,16 +103,17 @@ namespace AN.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("AnimeId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -144,7 +122,7 @@ namespace AN.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -159,18 +137,24 @@ namespace AN.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int?>("AnimeId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AnimeId");
 
                     b.ToTable("Genres");
                 });
@@ -179,22 +163,23 @@ namespace AN.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("AddedbyId")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Chat")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("ForumId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -209,24 +194,27 @@ namespace AN.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("AnimeId")
-                        .HasColumnType("int");
+                    b.Property<int?>("AnimeId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("Score")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AnimeId");
 
                     b.HasIndex("UserId");
 
@@ -237,16 +225,17 @@ namespace AN.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("Name")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -256,7 +245,7 @@ namespace AN.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -267,12 +256,12 @@ namespace AN.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("varchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
@@ -289,7 +278,8 @@ namespace AN.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -299,7 +289,7 @@ namespace AN.Migrations
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -311,10 +301,10 @@ namespace AN.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -325,25 +315,25 @@ namespace AN.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
-                        .HasColumnType("varchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("timestamp");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("varchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("varchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
@@ -352,17 +342,17 @@ namespace AN.Migrations
                         .HasColumnType("text");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("varchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("character varying(256)")
+                        .HasMaxLength(256);
 
                     b.HasKey("Id");
 
@@ -382,7 +372,8 @@ namespace AN.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("text");
@@ -392,7 +383,7 @@ namespace AN.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -404,17 +395,17 @@ namespace AN.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -426,10 +417,10 @@ namespace AN.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -441,13 +432,13 @@ namespace AN.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Value")
                         .HasColumnType("text");
@@ -465,7 +456,7 @@ namespace AN.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(128)");
+                        .HasColumnType("text");
 
                     b.HasIndex("UserId");
 
@@ -477,7 +468,7 @@ namespace AN.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Firstname")
                         .IsRequired()
@@ -485,6 +476,9 @@ namespace AN.Migrations
 
                     b.Property<string>("Lastname")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProfilePic")
                         .HasColumnType("text");
 
                     b.HasDiscriminator().HasValue("User");
@@ -495,36 +489,6 @@ namespace AN.Migrations
                     b.HasOne("AN.Core.Domain.Studio", "Studio")
                         .WithMany("Animes")
                         .HasForeignKey("StudioId");
-                });
-
-            modelBuilder.Entity("AN.Core.Domain.AnimeGenre", b =>
-                {
-                    b.HasOne("AN.Core.Domain.Anime", "Anime")
-                        .WithMany("AnimeGenres")
-                        .HasForeignKey("AnimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AN.Core.Domain.Genre", "Genre")
-                        .WithMany("AnimeGenres")
-                        .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("AN.Core.Domain.AnimeRating", b =>
-                {
-                    b.HasOne("AN.Core.Domain.Anime", "Anime")
-                        .WithMany("AnimeRating")
-                        .HasForeignKey("AnimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AN.Core.Domain.Rating", "Rating")
-                        .WithMany("AnimeRating")
-                        .HasForeignKey("RatingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("AN.Core.Domain.Favorite", b =>
@@ -553,6 +517,13 @@ namespace AN.Migrations
                         .HasForeignKey("UserId");
                 });
 
+            modelBuilder.Entity("AN.Core.Domain.Genre", b =>
+                {
+                    b.HasOne("AN.Core.Domain.Anime", null)
+                        .WithMany("Genres")
+                        .HasForeignKey("AnimeId");
+                });
+
             modelBuilder.Entity("AN.Core.Domain.Message", b =>
                 {
                     b.HasOne("AN.Core.Domain.User", "Addedby")
@@ -568,7 +539,11 @@ namespace AN.Migrations
 
             modelBuilder.Entity("AN.Core.Domain.Rating", b =>
                 {
-                    b.HasOne("AN.Core.Domain.User", "User")
+                    b.HasOne("AN.Core.Domain.Anime", null)
+                        .WithMany("Ratings")
+                        .HasForeignKey("AnimeId");
+
+                    b.HasOne("AN.Core.Domain.User", null)
                         .WithMany("Ratings")
                         .HasForeignKey("UserId");
                 });

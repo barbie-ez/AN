@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace AN.Core.Domain
 {
@@ -21,7 +22,11 @@ namespace AN.Core.Domain
 
         public Studio Studio { get; set; }
 
-        public ICollection<AnimeGenre> AnimeGenres { get; set; } = new List<AnimeGenre>();
+        public string AnimeIcon { get; set; }
+
+        //public ICollection<AnimeGenre> AnimeGenres { get; set; } = new List<AnimeGenre>();
+
+        public ICollection<Genre> Genres { get; set; } = new List<Genre>();
 
         public bool HasManga { get; set; }
 
@@ -31,6 +36,8 @@ namespace AN.Core.Domain
 
         public DateTime BraodcastTime { get; set; }
 
-        public ICollection<AnimeRating> AnimeRating { get; set; } = new List<AnimeRating>();
+        //public ICollection<AnimeRating> AnimeRating { get; set; } = new List<AnimeRating>();
+
+        public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
     }
 }

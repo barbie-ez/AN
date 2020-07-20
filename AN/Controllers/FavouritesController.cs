@@ -41,9 +41,9 @@ namespace AN.Controllers
 
             if (!_unitOfWork.Favorites.UserExists(userId))
             {
-                _logger.LogInformation(MyLogEvents.GetItemNotFound, "User does not exis");
+                _logger.LogInformation(MyLogEvents.GetItemNotFound, "User does not exist");
 
-                return NotFound(new ResponseDTO<string> { Code = 401, responseMessage = "User does not exist", returnObject = null });
+                return NotFound(new ResponseDTO<string> { Code = ResponseCodes.Unauthorized, responseMessage = "User does not exist", returnObject = null });
             }
 
             var favouritesFromUsers = _unitOfWork.Favorites.GetUserFavorites(userId);
@@ -60,9 +60,9 @@ namespace AN.Controllers
 
             if (!_unitOfWork.Favorites.UserExists(userId))
             {
-                _logger.LogInformation(MyLogEvents.GetItemNotFound, "User does not exis");
+                _logger.LogInformation(MyLogEvents.GetItemNotFound, "User does not exist");
 
-                return NotFound(new ResponseDTO<string> { Code = 401, responseMessage = "User does not exist", returnObject = null });
+                return NotFound(new ResponseDTO<string> { Code  = ResponseCodes.Unauthorized, responseMessage = "User does not exist", returnObject = null });
             }
 
             var favouritesEntity = _mapper.Map<Favorite>(favourite);

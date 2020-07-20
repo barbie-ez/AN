@@ -10,11 +10,11 @@ namespace AN.Core.Domain
         }
         public int Score { get; set; }
 
-        public ICollection<AnimeRating> AnimeRating { get; set; }
+        //public ICollection<AnimeRating> AnimeRating { get; set; }
 
-        public string UserId { get; set; }
+        //public string UserId { get; set; }
 
-        public User User { get; set; }
+        //public User User { get; set; }
 
     }
 }

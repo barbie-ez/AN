@@ -44,11 +44,13 @@ namespace AN
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ANDbContext>(options =>
-                options.UseMySQL(
+               // options.UseMySQL(
+               //options.UseSqlServer(
+               options.UseNpgsql(
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<User,Role>(options => {
-                options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedAccount = false;
                 options.User.RequireUniqueEmail = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = false;
@@ -127,7 +129,7 @@ namespace AN
                     {
                         Title = "AN API",
                         Version = "1",
-                        Description = "Through this api you can keep track of the food you eat",
+                        Description = "This is the anime network",
                         Contact = new OpenApiContact
                         {
                             Email = "ezomo.barbara@gmail.com",

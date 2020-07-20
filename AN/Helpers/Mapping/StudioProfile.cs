@@ -13,8 +13,8 @@ namespace AN.Helpers.Mapping
             CreateMap<Studio, StudioDTO>();
             CreateMap<StudioDTO, Studio>();
 
-            CreateMap<Favorite, CreateStudioDTO>();
-            CreateMap<CreateStudioDTO, Favorite>();
+            CreateMap<Studio, CreateStudioDTO>();
+            CreateMap<CreateStudioDTO, Studio>();
         }
     }
 }

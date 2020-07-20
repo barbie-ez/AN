@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace AN.DTO.Post
 {
@@ -15,18 +16,21 @@ namespace AN.DTO.Post
 
         public int NoOfEps { get; set; }
 
-        public int? StudioId { get; set; }
+        public int StudioId { get; set; }
 
-        [Required]
-        public IList<int> AnimeGenres { get; set; } = new List<int>();
+        
+        public IList<int> Genres { get; set; } = new List<int>();
 
         public bool HasManga { get; set; }
 
         public int Duration { get; set; }
 
+        [Required]
+        public IFormFile AnimeIcon { get; set; }
+
         public string Rated { get; set; }
 
-        public DateTime BraodcastTime { get; set; }
+        public string BraodcastTime { get; set; }
 
         public IList<int> Ratings { get; set; } = new List<int>();
     }
