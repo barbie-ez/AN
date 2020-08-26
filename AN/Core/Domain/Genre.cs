@@ -10,6 +10,6 @@ namespace AN.Core.Domain
         }
         public string Name { get; set; }
 
-        //public ICollection<AnimeGenre> AnimeGenres { get; set; } = new List<AnimeGenre>();
+        //public ICollection<Anime> Animes { get; set; } = new List<Anime>();
     }
 }

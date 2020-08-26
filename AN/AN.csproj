@@ -32,6 +32,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,5 +51,7 @@
     <Folder Include="DTO\ Response\" />
     <Folder Include="Helpers\Logging\" />
     <Folder Include="wwwroot\images\" />
+    <Folder Include="Helpers\Filter\" />
+    <Folder Include="Helpers\Tools\" />
   </ItemGroup>
 </Project>

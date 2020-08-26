@@ -13,8 +13,13 @@ namespace AN.Helpers.Mapping
             CreateMap<Studio, StudioDTO>();
             CreateMap<StudioDTO, Studio>();
 
+            CreateMap<Anime, AnimeDTO>();
+            CreateMap<AnimeDTO, Anime>();
+
             CreateMap<Studio, CreateStudioDTO>();
             CreateMap<CreateStudioDTO, Studio>();
         }
+
+
     }
 }

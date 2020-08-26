@@ -80,6 +80,7 @@ namespace AN
                 mc.AddProfile(new StudioProfile());
                 mc.AddProfile(new ForumProfile());
                 mc.AddProfile(new RatingProfile());
+                mc.AddProfile(new GenreProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();
@@ -170,7 +171,10 @@ namespace AN
                 });
             });
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            ); ;
+    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

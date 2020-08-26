@@ -3,15 +3,17 @@ using System;
 using AN.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AN.Migrations
 {
     [DbContext(typeof(ANDbContext))]
-    partial class ANDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200826195731_update type field")]
+    partial class updatetypefield
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

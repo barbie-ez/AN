@@ -20,9 +20,9 @@ namespace AN.Persistense.Repositories
             get { return Context as ANDbContext; }
         }
 
-        public IEnumerable<Studio> GetStudioWithAnime()
+        public Studio GetStudioWithAnime(int studioId)
         {
-            return ANDbContext.Studios.Include(s => s.Animes).ToList();
+            return ANDbContext.Studios.Include(r=>r.Animes).FirstOrDefault(r=>r.Id==studioId);
         }
     }
 }

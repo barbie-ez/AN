@@ -12,6 +12,8 @@ namespace AN.DTO.Post
 
         public string Description { get; set; }
 
+        public string Type { get; set; }
+
         public int Rating { get; set; }
 
         public int NoOfEps { get; set; }
@@ -19,7 +21,7 @@ namespace AN.DTO.Post
         public int StudioId { get; set; }
 
         
-        public IList<int> Genres { get; set; } = new List<int>();
+        public IList<int> AnimeGenres { get; set; } = new List<int>();
 
         public bool HasManga { get; set; }
 
@@ -32,6 +34,6 @@ namespace AN.DTO.Post
 
         public string BraodcastTime { get; set; }
 
-        public IList<int> Ratings { get; set; } = new List<int>();
+        public IList<int> AnimeRatings { get; set; } = new List<int>();
     }
 }

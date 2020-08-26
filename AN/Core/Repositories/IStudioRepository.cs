@@ -6,6 +6,6 @@ namespace AN.Core.Repositories
 {
     public interface IStudioRepository : IRepository<Studio>
     {
-        IEnumerable<Studio> GetStudioWithAnime();
+        Studio GetStudioWithAnime(int studioId);
     }
 }

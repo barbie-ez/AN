@@ -14,8 +14,8 @@ namespace AN.Helpers.Mapping
             CreateMap<Anime, AnimeDTO>();
             CreateMap<AnimeDTO, Anime>();
 
-            CreateMap<Anime, CreateAnimeDTO>();
-            CreateMap<CreateAnimeDTO, Anime>();
+            CreateMap<Anime, CreateAnimeDTO>().ForMember(dest => dest.BraodcastTime, opt => opt.MapFrom(src => src.BraodcastTime.ToString()));
+            CreateMap<CreateAnimeDTO, Anime>().ForMember(dest => dest.BraodcastTime, opt => opt.MapFrom(src => Convert.ToDateTime(src.BraodcastTime)));
         }
     }
 }
