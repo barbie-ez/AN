@@ -26,9 +26,9 @@ namespace AN.Core.Domain
 
         public string AnimeIcon { get; set; }
 
-        //public ICollection<AnimeGenre> AnimeGenres { get; set; } = new List<AnimeGenre>();
+        public ICollection<AnimeGenre> AnimeGenres { get; set; } = new List<AnimeGenre>();
 
-        public ICollection<Genre> Genres { get; set; } = new List<Genre>();
+        //public ICollection<Genre> Genres { get; set; } = new List<Genre>();
 
         public bool HasManga { get; set; }
 

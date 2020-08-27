@@ -72,6 +72,21 @@ namespace AN.Migrations
                     b.ToTable("Animes");
                 });
 
+            modelBuilder.Entity("AN.Core.Domain.AnimeGenre", b =>
+                {
+                    b.Property<int>("GenreId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("AnimeId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("GenreId", "AnimeId");
+
+                    b.HasIndex("AnimeId");
+
+                    b.ToTable("AnimeGenres");
+                });
+
             modelBuilder.Entity("AN.Core.Domain.Favorite", b =>
                 {
                     b.Property<int>("Id")
@@ -141,9 +156,6 @@ namespace AN.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int?>("AnimeId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("timestamp without time zone");
 
@@ -154,8 +166,6 @@ namespace AN.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AnimeId");
 
                     b.ToTable("Genres");
                 });
@@ -492,6 +502,21 @@ namespace AN.Migrations
                         .HasForeignKey("StudioId");
                 });
 
+            modelBuilder.Entity("AN.Core.Domain.AnimeGenre", b =>
+                {
+                    b.HasOne("AN.Core.Domain.Anime", "Anime")
+                        .WithMany("AnimeGenres")
+                        .HasForeignKey("AnimeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AN.Core.Domain.Genre", "Genre")
+                        .WithMany("AnimeGenres")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("AN.Core.Domain.Favorite", b =>
                 {
                     b.HasOne("AN.Core.Domain.Anime", "Anime")
@@ -516,13 +541,6 @@ namespace AN.Migrations
                     b.HasOne("AN.Core.Domain.User", null)
                         .WithMany("Forums")
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("AN.Core.Domain.Genre", b =>
-                {
-                    b.HasOne("AN.Core.Domain.Anime", null)
-                        .WithMany("Genres")
-                        .HasForeignKey("AnimeId");
                 });
 
             modelBuilder.Entity("AN.Core.Domain.Message", b =>

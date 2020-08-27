@@ -21,7 +21,7 @@ namespace AN.DTO.Post
         public int StudioId { get; set; }
 
         
-        public IList<int> AnimeGenres { get; set; } = new List<int>();
+        public IList<int> AnimeGenre { get; set; } = new List<int>();
 
         public bool HasManga { get; set; }
 

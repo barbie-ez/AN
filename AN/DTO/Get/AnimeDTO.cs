@@ -25,7 +25,7 @@ namespace AN.DTO.Get
 
         //public IFormFile AnimeIconPic { get; set; }
 
-        public ICollection<GenreDTO> AnimeGenres { get; set; } = new List<GenreDTO>();
+        public ICollection<AnimeGenreDTO> AnimeGenres { get; set; } = new List<AnimeGenreDTO>();
 
         public bool HasManga { get; set; }
 

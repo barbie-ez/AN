@@ -16,16 +16,16 @@ namespace AN.Data
         {
             base.OnModelCreating(builder);
 
-            //builder.Entity<AnimeGenre>()
-            //        .HasKey(ag => new { ag.GenreId, ag.AnimeId });
-            //builder.Entity<AnimeGenre>()
-            //        .HasOne(ag => ag.Anime)
-            //        .WithMany(a => a.AnimeGenres)
-            //        .HasForeignKey(ag => ag.AnimeId);
-            //builder.Entity<AnimeGenre>()
-            //        .HasOne(ag => ag.Genre)
-            //        .WithMany(g => g.AnimeGenres)
-            //        .HasForeignKey(ag => ag.GenreId);
+            builder.Entity<AnimeGenre>()
+                    .HasKey(ag => new { ag.GenreId, ag.AnimeId });
+            builder.Entity<AnimeGenre>()
+                    .HasOne(ag => ag.Anime)
+                    .WithMany(a => a.AnimeGenres)
+                    .HasForeignKey(ag => ag.AnimeId);
+            builder.Entity<AnimeGenre>()
+                    .HasOne(ag => ag.Genre)
+                    .WithMany(g => g.AnimeGenres)
+                    .HasForeignKey(ag => ag.GenreId);
 
             //builder.Entity<AnimeRating>()
             //        .HasKey(ar => new { ar.RatingId, ar.AnimeId });
@@ -57,6 +57,8 @@ namespace AN.Data
         public DbSet<Rating> Ratings { get; set; }
 
         public DbSet<Genre> Genres { get; set; }
+
+        public DbSet<AnimeGenre> AnimeGenres { get; set; }
 
     }
 }

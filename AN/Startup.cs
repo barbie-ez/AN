@@ -81,6 +81,7 @@ namespace AN
                 mc.AddProfile(new ForumProfile());
                 mc.AddProfile(new RatingProfile());
                 mc.AddProfile(new GenreProfile());
+                mc.AddProfile(new AnimeGenreProfile());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

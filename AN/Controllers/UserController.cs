@@ -42,6 +42,7 @@ namespace AN.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
+        [Produces("application/json")]
         public async Task<ActionResult> Login([FromBody] LoginDTO user)
         {
             if(string.IsNullOrEmpty(user.Username)|| string.IsNullOrEmpty(user.Username))
@@ -98,6 +99,7 @@ namespace AN.Controllers
         }
 
         [HttpPost]
+        [Produces("application/json")]
         public async Task<ActionResult> CreateUser([FromBody] CreateUserDTO user)
         {
 

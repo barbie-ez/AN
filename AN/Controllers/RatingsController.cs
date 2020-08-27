@@ -54,25 +54,6 @@ namespace AN.Controllers
             return Ok(new ResponseDTO<IEnumerable<RatingDTO>>() { Code = ResponseCodes.Success, responseMessage = "list of anime ratings successfully returned", returnObject = ratingsToReturn });
         }
 
-        //[Produces("application/json")]
-        //[HttpGet("{userId}", Name = "GetUserRatingsForAnime")]
-        //public ActionResult GetUserRatingsForAnime(int animeId , int userId)
-        //{
-        //    _logger.LogInformation(MyLogEvents.ListItems, "Listing anime Ratings");
-
-        //    if (!_unitOfWork.Ratings.AnimeExists(animeId))
-        //    {
-        //        _logger.LogInformation(MyLogEvents.GetItemNotFound, "anime does not exis");
-
-        //        return NotFound(new ResponseDTO<string> { Code = ResponseCodes.NotFound, responseMessage = "anime does not exist", returnObject = null });
-        //    }
-
-        //    var ratingsFromUsers = _unitOfWork.Ratings.GetAnimeRatings(animeId);
-
-        //    var ratingsToReturn = _mapper.Map<IEnumerable<RatingDTO>>(ratingsFromUsers);
-
-        //    return Ok(new ResponseDTO<IEnumerable<RatingDTO>>() { Code = ResponseCodes.Success, responseMessage = "list of anime ratings successfully returned", returnObject = ratingsToReturn });
-        //}
         
         [HttpPost]
         public ActionResult CreateRatingForAnime(int animeId, [FromBody]CreateRatingDTO rating)
@@ -88,16 +69,9 @@ namespace AN.Controllers
 
             var ratingEntity = _mapper.Map<Rating>(rating);
 
-           // _unitOfWork.Ratings.Add(ratingEntity);
-
             var anime = _unitOfWork.Animes.FirstOrDefault(r => r.Id == animeId);
 
             anime.Ratings.Add(ratingEntity);
-
-            //ratingEntity.AnimeRating.Add(new AnimeRating
-            //{
-            //    AnimeId = animeId
-            //});
 
             _unitOfWork.Complete();
 

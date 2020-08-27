@@ -101,9 +101,9 @@ namespace AN.Controllers
             memory.Position = 0;
 
             return File(memory, Helper.GetContentType(path), Path.GetFileName(path));
-            //return Ok(new ResponseDTO<IActionResult>() { Code = ResponseCodes.Success, responseMessage = "Icon returned", returnObject = file });
         }
 
+        [Produces("application/json")]
         [HttpPost]
         public ActionResult CreateAnime([FromForm] CreateAnimeDTO anime)
         {
@@ -113,23 +113,25 @@ namespace AN.Controllers
             {
                 _logger.LogInformation(MyLogEvents.InsertItem, "anime already created");
 
-                return NotFound(new ResponseDTO<string> { Code = ResponseCodes.NotFound, responseMessage = "anime does not exist", returnObject = null });
+                return NotFound(new ResponseDTO<string> { Code = ResponseCodes.NotFound, responseMessage = "anime already created", returnObject = null });
             }
 
             var animeEnitity = _mapper.Map<Anime>(anime);
 
-            foreach(var item in anime.AnimeGenres)
+            _unitOfWork.Animes.Add(animeEnitity);
+
+            _unitOfWork.Complete();
+
+            foreach (var item in anime.AnimeGenre)
             {
                 if (_unitOfWork.Genres.FirstOrDefault(g => g.Id == item)!=null)
                 {
-                    animeEnitity.Genres.Add(_unitOfWork.Genres.FirstOrDefault(g => g.Id == item));
+                    animeEnitity.AnimeGenres.Add(new AnimeGenre {AnimeId=animeEnitity.Id, GenreId=item });
                 }
             }
 
            
             animeEnitity.AnimeIcon = UploadFile(anime.AnimeIcon);
-
-            _unitOfWork.Animes.Add(animeEnitity);
 
             _unitOfWork.Complete();
 

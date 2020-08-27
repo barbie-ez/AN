@@ -59,9 +59,9 @@ namespace AN
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>()
+                    webBuilder.UseStartup<Startup>();
                     //.UseUrls("http://localhost:5001");
-                    .UseUrls("http://0.0.0.0:" + Environment.GetEnvironmentVariable("PORT"));
+                    //.UseUrls("http://0.0.0.0:" + Environment.GetEnvironmentVariable("PORT"));
                 }).UseSerilog();
 
     }

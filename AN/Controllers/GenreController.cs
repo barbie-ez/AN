@@ -70,6 +70,28 @@ namespace AN.Controllers
             return Ok(new ResponseDTO<GenreDTO>() { Code = ResponseCodes.Success, responseMessage = "list of genres successfully returned", returnObject = genreToReturn });
         }
 
+        [Produces("application/json")]
+        [HttpGet("{genreId}/anime", Name = "GetGenresWithAnime")]
+        public ActionResult GetGenresWithAnime(int genreId)
+        {
+            _logger.LogInformation(MyLogEvents.GetItem, "Get Genres with Anime");
+
+            var genre = _unitOfWork.Genres.GetGenreWithAnime(genreId);
+
+            if (genre == null)
+            {
+                _logger.LogInformation(MyLogEvents.GetItemNotFound, "Genre does not exist");
+
+                return NotFound(new ResponseDTO<string> { Code = ResponseCodes.NotFound, responseMessage = "Genre does not exist", returnObject = null });
+
+            }
+
+            var genreToReturn = _mapper.Map<GenreDTO>(genre);
+
+
+            return Ok(new ResponseDTO<GenreDTO>() { Code = ResponseCodes.Success, responseMessage = "list of genres successfully returned", returnObject = genreToReturn });
+        }
+
 
         [HttpPost()]
         public ActionResult CreateGenres(CreateGenreDTO genre)

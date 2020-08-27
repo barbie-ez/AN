@@ -5,6 +5,6 @@ namespace AN.Core.Repositories
 {
     public interface IGenreRepository : IRepository<Genre>
     {
-
+        Genre GetGenreWithAnime(int genreId);
     }
 }

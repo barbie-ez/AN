@@ -9,6 +9,6 @@ namespace AN.DTO.Get
 
         public string Name { get; set; }
 
-        public IList<AnimeDTO> AnimeGenres { get; set; } = new List<AnimeDTO>();
+        public IList<AnimeGenreDTO> AnimeGenres { get; set; } = new List<AnimeGenreDTO>();
     }
 }

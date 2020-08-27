@@ -93,35 +93,7 @@ namespace AN.Controllers
         }
 
 
-        //[Produces("application/json")]
-        //[HttpGet(Name = "GetStudiosWithAnimes")]
-        //public ActionResult GetStudiosWithAnimes()
-        //{
-        //    _logger.LogInformation(MyLogEvents.ListItems, "Listing Studios with Anime");
-
-        //    var studios = _unitOfWork.Studios.GetStudioWithAnime();
-
-        //    var studioToReturn = _mapper.Map<IEnumerable<StudioDTO>>(studios);
-
-        //    return Ok(new ResponseDTO<List<StudioDTO>>() { Code = ResponseCodes.Success, responseMessage = "list of studios successfully returned", returnObject = studioToReturn.ToList() });
-        //}
-        private async Task<IActionResult> Download(string filename)
-        {
-            if (filename == null)
-                return Content("filename not present");
-
-            var path = Path.Combine(
-                           Directory.GetCurrentDirectory(),
-                           "wwwroot", filename);
-
-            var memory = new MemoryStream();
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                await stream.CopyToAsync(memory);
-            }
-            memory.Position = 0;
-            return File(memory, Helper.GetContentType(path), Path.GetFileName(path));
-        }
+        
         [HttpPost()]
         public ActionResult CreateStudios(CreateStudioDTO studio)
         {
